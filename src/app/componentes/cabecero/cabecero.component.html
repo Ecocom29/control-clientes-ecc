@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <!-- Enlace a la página principal -->
+    <a [routerLink]="['/']" class="navbar-brand">Control Clientes</a>
+    <!-- Botón para colapsar la barra de navegacion -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarCollapse"
+      aria-controls="navbarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Contenido de la barra de navegación -->
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <!-- Menu visble solo si el usuario esta logueado -->
+      @if(isLoggedIn){
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item px-2">
+            <a [routerLink]="['/']" class="nav-link">Inicio</a>
+          </li>
+        </ul>
+      }
+
+      <ul class="navbar-nav">
+        @if(isLoggedIn){
+          <li class="nav-item px-2">
+            <a [routerLink]="['/']" class="nav-link">
+              <i class="bi bi-person-circle"></i> Bienvenido
+            </a>
+          </li>
+        }
+        @if(!isLoggedIn){
+          <li class="nav-item px-2">
+            <a [routerLink]="['/login']" class="nav-link">
+              <i class="bi bi-person"></i> Login
+            </a>
+          </li>
+        }
+
+        @if(isLoggedIn){
+          <li class="nav-item px-2">
+           <a style="cursor: pointer" (click)="logout()" class="nav-link">
+            <i class="bi bi-box-arrow-tigth"></i> Salir
+           </a>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</nav>
